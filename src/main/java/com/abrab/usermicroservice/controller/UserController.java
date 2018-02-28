@@ -3,6 +3,7 @@ package com.abrab.usermicroservice.controller;
 import com.abrab.usermicroservice.domain.User;
 import com.abrab.usermicroservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -16,6 +17,13 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Value("${global}")
+    private String testConf;
+
+    @GetMapping("/conf")
+    public String testConf() {
+        return testConf;
+    }
 
     @GetMapping("/users")
     public List<User> getUsers() {
